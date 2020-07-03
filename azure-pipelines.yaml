@@ -1,0 +1,52 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - terraform
+      - ansible
+      - azure-pipelines.yaml
+
+variables:
+  # Location of terraform code
+  terraformDirectory: "$(Build.SourcesDirectory)/terraform"
+
+  # API Token
+  # apiToken: <secret> # This is setup in pipeline variables!
+
+  # Amount of agents
+  dropletAmount: 1
+
+  # Droplet size
+  dropletSize: s-1vcpu-1gb
+
+  # Droplet region
+  dropletRegion: ams3
+
+steps:
+  - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+    displayName: 'Replace tokens in terraform/*.tf'
+    inputs:
+      targetFiles: 'terraform/*.tf'
+      tokenPrefix: '__'
+      tokenSuffix: '__'
+
+  - task: TerraformCLI@0
+    inputs:
+      command: 'init'
+      commandOptions: $(terraformDirectory)
+    displayName: Init $(terraformDirectory)
+
+  - task: TerraformCLI@0
+    inputs:
+      command: 'validate'
+      commandOptions: $(terraformDirectory)
+    displayName: Validate $(terraformDirectory)
+
+  - task: TerraformCLI@0
+    inputs:
+      command: 'apply'
+      commandOptions: $(terraformDirectory)
+    displayName: Apply $(terraformDirectory)
+
