@@ -21,16 +21,15 @@ resource "digitalocean_droplet" "droplet" {
 
     inline = ["apt install python3"]
   }
+}
+
+resource "null_resource" "ansible_resource" {
+  triggers = {
+    droplet_ipv4s = digitalocean_droplet.droplet.*.ipv4_address
+  }
 
   provisioner "local-exec" {
-    connection {
-      host = self.ipv4_address
-      user = "root"
-      type = "ssh"
-      private_key = tls_private_key.private_key.private_key_pem
-    }
-
-    command = "ansible-playbook ./ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)},"
+    command = "echo '${tls_private_key.private_key.private_key_pem}' > id_rsa; ansible-playbook ./ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)}, -i id_rsa"
 
     environment = {
       azDoAccountName = var.azdo_account_name
