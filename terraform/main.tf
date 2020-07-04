@@ -19,7 +19,7 @@ resource "digitalocean_droplet" "droplet" {
       private_key = tls_private_key.private_key.private_key_pem
     }
 
-    command = "apt install python3"
+    inline = ["apt install python3"]
   }
 
   provisioner "local-exec" {
