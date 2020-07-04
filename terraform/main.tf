@@ -25,7 +25,7 @@ resource "digitalocean_droplet" "droplet" {
 
 resource "null_resource" "ansible_resource" {
   triggers = {
-    droplet_ipv4s = digitalocean_droplet.droplet.*.ipv4_address
+    droplet_ipv4s = join(",", digitalocean_droplet.droplet.*.ipv4_address)
   }
 
   provisioner "local-exec" {
