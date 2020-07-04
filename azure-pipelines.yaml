@@ -30,11 +30,11 @@ jobs:
     displayName: Setup Infrastructure
     steps:
       - bash: |
-          pip3 install ansible ansible-galaxy
+          pip3 install setuptools ansible ansible-galaxy
 
           ansible-galaxy install -r ansible/requirements.yaml
         displayName: Install ansible and requirements
-        
+
       - task: qetza.replacetokens.replacetokens-task.replacetokens@3
         displayName: 'Replace tokens in terraform/*.tf'
         inputs:
