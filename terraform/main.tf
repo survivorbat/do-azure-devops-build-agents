@@ -22,7 +22,7 @@ resource "digitalocean_droplet" "droplet" {
     environment = {
       azDoAccountName = var.azdo_account_name
       azDoSecretKey = var.azdo_secret_key
-      ANSIBLE_HOST_KEY_CHECKING = False
+      ANSIBLE_HOST_KEY_CHECKING = false
     }
   }
 }
