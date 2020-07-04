@@ -9,7 +9,7 @@ resource "digitalocean_droplet" "droplet" {
   name = "buildagent-${count.index}"
   region = var.droplet_region
   size = var.droplet_size
-  ssh_keys = [digitalocean_ssh_key.agent_key.name]
+  ssh_keys = [digitalocean_ssh_key.agent_key.id]
 
   provisioner "local-exec" {
     connection {
