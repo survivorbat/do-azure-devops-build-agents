@@ -11,6 +11,17 @@ resource "digitalocean_droplet" "droplet" {
   size = var.droplet_size
   ssh_keys = [digitalocean_ssh_key.agent_key.id]
 
+  provisioner "remote-exec" {
+    connection {
+      host = self.ipv4_address
+      user = "root"
+      type = "ssh"
+      private_key = tls_private_key.private_key.private_key_pem
+    }
+
+    command = "apt install python3"
+  }
+
   provisioner "local-exec" {
     connection {
       host = self.ipv4_address
