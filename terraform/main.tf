@@ -12,6 +12,7 @@ resource "digitalocean_droplet" "droplet" {
 
   provisioner "local-exec" {
     connection {
+      host = self.ipv4_address
       user = "root"
       type = "ssh"
       private_key = tls_private_key.private_key.private_key_pem
