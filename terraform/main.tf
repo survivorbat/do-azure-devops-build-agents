@@ -36,6 +36,6 @@ resource "tls_private_key" "private_key" {
 }
 
 resource "digitalocean_ssh_key" "agent_key" {
-  name = "agent_key"
+  name = "agent-key"
   public_key = tls_private_key.private_key.public_key_openssh
 }
