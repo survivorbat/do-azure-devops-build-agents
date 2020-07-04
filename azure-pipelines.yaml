@@ -64,7 +64,7 @@ jobs:
         inputs:
           command: 'plan'
           commandOptions: $(terraformDirectory)
-        displayName: Apply $(terraformDirectory)
+        displayName: Plan $(terraformDirectory)
 
       - task: TerraformCLI@0
         inputs:
