@@ -5,7 +5,7 @@ provider "digitalocean" {
 resource "digitalocean_droplet" "droplet" {
   count = var.droplet_amount
   image = "ubuntu-18-04-x64"
-  name = "build_agent_${count.index}"
+  name = "buildagent-${count.index}"
   region = var.droplet_region
   size = var.droplet_size
 
