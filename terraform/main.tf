@@ -23,13 +23,19 @@ resource "digitalocean_droplet" "droplet" {
   }
 }
 
+resource "local_file" "ssh_private_key" {
+  filename = "id_rsa"
+  content = tls_private_key.private_key.private_key_pem
+  file_permission = "600"
+}
+
 resource "null_resource" "ansible_resource" {
   triggers = {
     droplet_ipv4s = join(",", digitalocean_droplet.droplet.*.ipv4_address)
   }
 
   provisioner "local-exec" {
-    command = "echo '${tls_private_key.private_key.private_key_pem}' > id_rsa; chmod 600 id_rsa; ansible-playbook ./ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)}, --private-key id_rsa"
+    command = "ansible-playbook ./ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)}, --private-key ${local_file.ssh_private_key.filename}"
 
     environment = {
       azDoAccountName = var.azdo_account_name
