@@ -15,6 +15,10 @@ variables:
   # apiToken: <secret> # This is setup in pipeline variables!
   # azureDevOpsAccountName: <secret> # This is setup in pipeline variables!
   # azureDevOpsSecretKey: <secret> # This is setup in pipeline variables!
+  # terraformBackendBucket: <secret> # This is setup in pipeline variables!
+  # terraformBackendKey: <secret> # This is setup in pipeline variables!
+  # doAccessKey: <secret> # This is setup in pipeline variables!
+  # doSecretKey: <secret> # This is setup in pipeline variables!
 
   # Amount of agents
   dropletAmount: 1
