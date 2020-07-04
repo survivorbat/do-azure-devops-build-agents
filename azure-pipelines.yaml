@@ -30,7 +30,9 @@ jobs:
     displayName: Setup Infrastructure
     steps:
       - bash: |
-          pip3 install setuptools ansible ansible-galaxy
+          python -m pip install --upgrade pip setuptools wheel
+
+          pip install ansible ansible-galaxy
 
           ansible-galaxy install -r ansible/requirements.yaml
         displayName: Install ansible and requirements
