@@ -29,7 +29,7 @@ resource "null_resource" "ansible_resource" {
   }
 
   provisioner "local-exec" {
-    command = "echo '${tls_private_key.private_key.private_key_pem}' > id_rsa; ansible-playbook ./ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)}, -i id_rsa"
+    command = "echo '${tls_private_key.private_key.private_key_pem}' > id_rsa; ansible-playbook ./ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)}, --private-key id_rsa"
 
     environment = {
       azDoAccountName = var.azdo_account_name
