@@ -32,7 +32,7 @@ jobs:
       - bash: |
           python3 -m pip install --upgrade pip setuptools wheel
 
-          pip3 install ansible ansible-galaxy
+          pip3 install ansible
 
           ansible-galaxy install -r ansible/requirements.yaml
         displayName: Install ansible and requirements
