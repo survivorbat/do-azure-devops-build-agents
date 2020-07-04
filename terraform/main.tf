@@ -31,7 +31,7 @@ resource "digitalocean_droplet" "droplet" {
 
 # SSH key
 resource "tls_private_key" "private_key" {
-  algorithm = "rsa"
+  algorithm = "RSA"
   rsa_bits = 2048
 }
 
