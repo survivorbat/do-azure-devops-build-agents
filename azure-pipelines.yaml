@@ -12,8 +12,9 @@ variables:
   # Location of terraform code
   terraformDirectory: "$(Build.SourcesDirectory)/terraform"
 
-  # API Token
   # apiToken: <secret> # This is setup in pipeline variables!
+  # azureDevOpsAccountName: <secret> # This is setup in pipeline variables!
+  # azureDevOpsSecretKey: <secret> # This is setup in pipeline variables!
 
   # Amount of agents
   dropletAmount: 1
@@ -24,29 +25,37 @@ variables:
   # Droplet region
   dropletRegion: ams3
 
-steps:
-  - task: qetza.replacetokens.replacetokens-task.replacetokens@3
-    displayName: 'Replace tokens in terraform/*.tf'
-    inputs:
-      targetFiles: 'terraform/*.tf'
-      tokenPrefix: '__'
-      tokenSuffix: '__'
+jobs:
+  - job: Setup
+    displayName: Setup Infrastructure
+    steps:
+      - bash: |
+          pip3 install ansible ansible-galaxy
 
-  - task: TerraformCLI@0
-    inputs:
-      command: 'init'
-      commandOptions: $(terraformDirectory)
-    displayName: Init $(terraformDirectory)
+          ansible-galaxy install -r ansible/requirements.yaml
+        displayName: Install ansible and requirements
+        
+      - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+        displayName: 'Replace tokens in terraform/*.tf'
+        inputs:
+          targetFiles: 'terraform/*.tf'
+          tokenPrefix: '__'
+          tokenSuffix: '__'
 
-  - task: TerraformCLI@0
-    inputs:
-      command: 'validate'
-      commandOptions: $(terraformDirectory)
-    displayName: Validate $(terraformDirectory)
+      - task: TerraformCLI@0
+        inputs:
+          command: 'init'
+          commandOptions: $(terraformDirectory)
+        displayName: Init $(terraformDirectory)
 
-  - task: TerraformCLI@0
-    inputs:
-      command: 'apply'
-      commandOptions: $(terraformDirectory)
-    displayName: Apply $(terraformDirectory)
+      - task: TerraformCLI@0
+        inputs:
+          command: 'validate'
+          commandOptions: $(terraformDirectory)
+        displayName: Validate $(terraformDirectory)
 
+      - task: TerraformCLI@0
+        inputs:
+          command: 'apply'
+          commandOptions: $(terraformDirectory)
+        displayName: Apply $(terraformDirectory)

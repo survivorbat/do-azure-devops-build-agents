@@ -17,3 +17,13 @@ variable "droplet_region" {
   type = string
   default = "__dropletRegion__"
 }
+
+variable "azdo_secret_key" {
+  type = string
+  default = "__azureDevOpsSecretKey__"
+}
+
+variable "azdo_account_name" {
+  type = string
+  default = "__azureDevOpsAccountName__"
+}

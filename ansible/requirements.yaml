@@ -1,0 +1,3 @@
+# Configuration role
+- src: git@github.com:gsoft-inc/ansible-role-azure-devops-agent.git
+  version: master

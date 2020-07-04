@@ -11,5 +11,10 @@ resource "digitalocean_droplet" "droplet" {
 
   provisioner "local-exec" {
     command = "ansible-playbook ../ansible/site.yaml -u root -i ${join(",", digitalocean_droplet.droplet.*.ipv4_address)}"
+
+    environment = {
+      azDoAccountName = var.azdo_account_name
+      azDoSecretKey = var.azdo_secret_key
+    }
   }
 }
