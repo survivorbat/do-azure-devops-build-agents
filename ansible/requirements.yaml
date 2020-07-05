@@ -7,5 +7,5 @@
   version: master
 
 # Pip
-- src: geerlinguy.pip
+- src: geerlingguy.pip
   version: master
