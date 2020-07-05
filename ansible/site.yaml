@@ -4,10 +4,12 @@
     - az_devops_agent_role: build
     - az_devops_accountname: "{{ lookup('env', 'azDoAccountName') }}"
     - az_devops_accesstoken: "{{ lookup('env', 'azDoSecretKey') }}"
+    - docker_users:
+        - az_devops_agent
   roles:
+    - gsoft.azure_devops_agent
     - geerlingguy.pip
     - geerlingguy.docker
-    - gsoft.azure_devops_agent
   tasks:
     - name: Install common packages
       apt:
