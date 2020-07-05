@@ -10,6 +10,11 @@ resource "digitalocean_droplet" "droplet" {
   region = var.droplet_region
   size = var.droplet_size
   ssh_keys = [digitalocean_ssh_key.agent_key.id]
+  tags = [
+    "AzureDevOpsBuildAgent:${count.index}",
+    "AzureDevOpsOrganization:${var.azdo_account_name}",
+    "Region:${var.droplet_region}"
+  ]
 
   provisioner "remote-exec" {
     connection {
