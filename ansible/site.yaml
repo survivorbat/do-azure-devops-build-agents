@@ -8,3 +8,12 @@
     - geerlingguy.pip
     - geerlingguy.docker
     - gsoft.azure_devops_agent
+  tasks:
+    - name: Install common packages
+      apt:
+        pkg:
+          - git
+          - tar
+          - zip
+          - gzip
+          - openssl
