@@ -25,7 +25,7 @@ resource "digitalocean_droplet" "droplet" {
       private_key = tls_private_key.private_key.private_key_pem
     }
 
-    inline = ["apt update", "apt install python"]
+    inline = ["apt update", "apt install python -y"]
   }
 }
 
