@@ -21,7 +21,7 @@ variables:
   # doSecretKey: <secret> # This is setup in pipeline variables!
 
   # Amount of agents
-  dropletAmount: 5
+  # dropletAmount: <value> # This is setup in pipeline variables!
 
   # Droplet size
   dropletSize: s-1vcpu-1gb
