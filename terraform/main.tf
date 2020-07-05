@@ -13,7 +13,8 @@ resource "digitalocean_droplet" "droplet" {
   tags = [
     "AzureDevOpsBuildAgent:${count.index}",
     "AzureDevOpsOrganization:${var.azdo_account_name}",
-    "Region:${var.droplet_region}"
+    "Region:${var.droplet_region}",
+    "Timestamp:${timestamp()}"
   ]
 
   provisioner "remote-exec" {
