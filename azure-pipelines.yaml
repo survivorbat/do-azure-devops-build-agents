@@ -21,7 +21,7 @@ variables:
   # doSecretKey: <secret> # This is setup in pipeline variables!
 
   # Amount of agents
-  dropletAmount: 1
+  dropletAmount: 0
 
   # Droplet size
   dropletSize: s-1vcpu-1gb
@@ -59,7 +59,7 @@ jobs:
           command: 'validate'
           commandOptions: $(terraformDirectory)
         displayName: Validate $(terraformDirectory)
-     
+
       - task: TerraformCLI@0
         inputs:
           command: 'plan'
