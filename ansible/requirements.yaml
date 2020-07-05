@@ -1,3 +1,11 @@
 # Configuration role
 - src: gsoft.azure_devops_agent
   version: master
+
+# Docker
+- src: geerlingguy.docker
+  version: master
+
+# Pip
+- src: geerlinguy.pip
+  version: master

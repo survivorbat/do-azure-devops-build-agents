@@ -72,6 +72,7 @@ Once you've set up all the required values, the following things will happen:
 1. Terraform sets up _n_ build agents according to the **dropletAmount** variable in the pipeline, all containing the ssh public key for the root user
 1. Terraform connects to the agents and makes sure Python3 is installed (and halts the process so the agents have had time to boot the SSH daemon)
 1. Terraform kicks off Ansible, pointing to the ipv4 addresses of all created droplets
+1. Ansible installs Docker and Pip on all agents
 1. Ansible runs the [gsoft.azure_devops_agent ansible role](https://github.com/gsoft-inc/ansible-role-azure-devops-agent) for all agents and retrieves credentials from the environment
 
 ## Can I run this locally?

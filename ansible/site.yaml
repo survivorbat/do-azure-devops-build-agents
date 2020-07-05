@@ -1,8 +1,10 @@
 - hosts: all
-  roles:
-    - gsoft.azure_devops_agent
   vars:
+    - docker_install_compose: true
     - az_devops_agent_role: build
     - az_devops_accountname: "{{ lookup('env', 'azDoAccountName') }}"
     - az_devops_accesstoken: "{{ lookup('env', 'azDoSecretKey') }}"
-    
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+    - gsoft.azure_devops_agent
