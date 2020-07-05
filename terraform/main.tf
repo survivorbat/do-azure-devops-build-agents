@@ -25,7 +25,7 @@ resource "digitalocean_droplet" "droplet" {
 
 resource "local_file" "ssh_private_key" {
   filename = "id_rsa"
-  content = tls_private_key.private_key.private_key_pem
+  sensitive_content = tls_private_key.private_key.private_key_pem
   file_permission = "600"
 }
 

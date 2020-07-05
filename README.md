@@ -84,5 +84,4 @@ Then you can run your `terraform` commands like usual.
 
 ## Todos
 
-- Currently the private key generated for the droplets is displayed in the Terraform plan step, this needs to be hidden OR an external ssh key should be used
 - You can currently only create a simple build agent as of now, thinking of expanding it further later
