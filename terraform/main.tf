@@ -6,7 +6,7 @@ provider "digitalocean" {
 resource "digitalocean_droplet" "droplet" {
   count = var.droplet_amount
   image = "ubuntu-18-04-x64"
-  name = "azure-devops-build-agent-${count.index}"
+  name = "${var.azdo_account_name}-build-agent-${count.index}"
   region = var.droplet_region
   size = var.droplet_size
   ssh_keys = [digitalocean_ssh_key.agent_key.id]
