@@ -24,7 +24,9 @@ Let's first begin with the pipeline.
 1. Create a new pipeline and choose `Use an existing YAML pipeline` as a template
 1. Choose the azure-pipelines.yaml from this repository
 1. Open up the `variables` tab of the pipeline
-1. Add variable `dropletAmount` with the amount of agents you want
+1. Add variable **dropletAmount** with the amount of agents you want
+1. Add variable **dropletSize** for the droplet size, for ex. **s-1vcpu-1gb** for 1 cpu and 1 GB RAM
+1. Add variable **dropletRegion** for the droplet region, for example ams3 for Amsterdam 3
 1. Keep this page open for the rest of the getting-started steps
 
 ### Setting up your state store in DigitalOcean

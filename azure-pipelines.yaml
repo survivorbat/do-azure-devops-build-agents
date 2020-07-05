@@ -21,13 +21,13 @@ variables:
   # doSecretKey: <secret> # This is setup in pipeline variables!
 
   # Amount of agents
-  # dropletAmount: <value> # This is setup in pipeline variables!
+  # dropletAmount: 1 # This is setup in pipeline variables!
 
   # Droplet size
-  dropletSize: s-1vcpu-1gb
+  # dropletSize: s-1vcpu-1gb # This is setup in pipeline variables!
 
   # Droplet region
-  dropletRegion: ams3
+#  dropletRegion: ams3 # This is setup in pipeline variables!
 
 jobs:
   - job: Setup
