@@ -17,6 +17,8 @@ Good question, this program requires the following objects to function:
 
 Let's first begin with the pipeline.
 
+// TODO: Diagram
+
 ### Set up Azure Pipelines in your Azure DevOps project
 
 1. Create a new pipeline and choose `Use an existing YAML pipeline` as a template
