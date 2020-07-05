@@ -6,7 +6,7 @@ provider "digitalocean" {
 resource "digitalocean_droplet" "droplet" {
   count = var.droplet_amount
   image = "ubuntu-18-04-x64"
-  name = "buildagent-${count.index}"
+  name = "azure-devops-build-agent-${count.index}"
   region = var.droplet_region
   size = var.droplet_size
   ssh_keys = [digitalocean_ssh_key.agent_key.id]
@@ -58,6 +58,6 @@ resource "tls_private_key" "private_key" {
 }
 
 resource "digitalocean_ssh_key" "agent_key" {
-  name = "agent-key"
+  name = "azure-devops-agent-key"
   public_key = tls_private_key.private_key.public_key_openssh
 }
