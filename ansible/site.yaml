@@ -4,7 +4,6 @@
     - az_devops_agent_role: build
     - az_devops_accountname: "{{ lookup('env', 'azDoAccountName') }}"
     - az_devops_accesstoken: "{{ lookup('env', 'azDoSecretKey') }}"
-    - az_devops_agent_pool_name: Azure Pipelines
     - docker_users:
         - az_devops_agent
   roles:
