@@ -19,3 +19,5 @@
           - zip
           - gzip
           - openssl
+    - name: Reboot agent to apply settings
+      reboot:
